@@ -6,7 +6,7 @@
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
   <script>
     if('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
+      navigator.serviceWorker.register('./service-worker.js')
         .then(() => console.log("Service Worker Registered"))
         .catch(e => console.log(e));
     }
