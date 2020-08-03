@@ -14,20 +14,46 @@
 <a href="https://www.mercadopago.com/point/integrations?amount=700&description=teste">Cobrar 7</a>
 <a href="mercadopago://cost_calculator_chooser">Abrir calculadora</a>
 -->
-<body onready="documentReady()">
-  <ons-page>
-    <ons-toolbar>
-      <div class="center">Calculadora do Mercado Pago</div>
-    </ons-toolbar>
-    <section>
-      <div style="text-align: center; margin-top: 20px">
-        <p>
-          <ons-input id="amount" placeholder="Valor a receber" modifier="underbar" type="number" min="1" step="0.01" autofocus></ons-input>
-        </p>
+<body>
+  <ons-navigator swipeable id="appNavigator"></ons-navigator>
 
-        <ons-button modifier="large">Prosseguir</ons-button>
-      </div>
-    </section>
-  </ons-page>
+  <template id="input-amount.html">
+    <ons-page id="input-amount">
+      <ons-toolbar>
+        <div class="center">Calculadora do Mercado Pago</div>
+      </ons-toolbar>
+      <section>
+        <div style="text-align: center; margin-top: 20px">
+          <p>
+            <ons-input id="amount" placeholder="Valor a receber" modifier="underbar" type="number" min="1" step="0.01" required></ons-input>
+          </p>
+
+          <ons-button modifier="large" id="goto-select-method">Prosseguir</ons-button>
+        </div>
+      </section>
+    </ons-page>
+  </template>
+
+  <template id="select-method.html">
+    <ons-page id="select-method">
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Voltar</ons-back-button>
+        </div>
+        <div class="center">Calculadora do Mercado Pago</div>
+      </ons-toolbar>
+      <section>
+        <div style="text-align: center; margin-top: 20px">
+          <p>
+            <ons-input id="amount" placeholder="Valor a receber" modifier="underbar" type="number" min="1" step="0.01" autofocus></ons-input>
+          </p>
+
+          <ons-button modifier="large">Prosseguir</ons-button>
+        </div>
+      </section>
+    </ons-page>
+  </template>
+
+
 </body>
 </html>
