@@ -1,6 +1,5 @@
 // Cache version
-const PRECACHE = 'precache-v4';
-const RUNTIME = 'runtime';
+const CACHE_NAME = 'precache-v4';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
@@ -14,7 +13,7 @@ const PRECACHE_URLS = [
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(PRECACHE)
+    caches.open(CACHE_NAME)
       .then(cache => cache.addAll(PRECACHE_URLS))
       .then(self.skipWaiting())
   );
@@ -22,7 +21,7 @@ self.addEventListener('install', event => {
 
 // The activate handler takes care of cleaning up old caches.
 self.addEventListener('activate', event => {
-  const currentCaches = [PRECACHE, RUNTIME];
+  const currentCaches = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
@@ -45,7 +44,7 @@ self.addEventListener('fetch', event => {
           return cachedResponse;
         }
 
-        return caches.open(RUNTIME).then(cache => {
+        return caches.open(CACHE_NAME).then(cache => {
           return fetch(event.request).then(response => {
             // Put a copy of the response in the runtime cache.
             return cache.put(event.request, response.clone()).then(() => {
