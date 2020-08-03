@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log("Service Worker Registered"))
+        .catch(e => console.log(e));
+    }
+  </script>
+  <link rel="shortcut icon" href="favicon.png" />
+  <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+  <title>Calculadora de tarifas do Mercado Pago</title>
+</head>
+<body>
+  <ons-button onclick="alert('You clicked me!')">Click Me</ons-button>
+</body>
+</html>
