@@ -1,3 +1,14 @@
 ons-page > .page__content > section {
   padding:8px;
 }
+
+#display-amount, #cursor-placeholder {
+  display: inline-block;
+  font-size: 60px;
+}
+
+#display-cents, #currency-sign {
+  font-size: 30px;
+  vertical-align: top;
+  line-height: 50px;
+}

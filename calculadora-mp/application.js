@@ -22,17 +22,30 @@ ons.ready(function() {
 document.addEventListener('init', function(event) {
   let page = event.target;
   if (page.id === 'input-amount') {
-    let inputAmout = page.querySelector('#amount');
+    let cursorPlaceholder = page.querySelector('#cursor-placeholder');
+    let displayAmount = page.querySelector('#display-amount');
+    let displayCents = page.querySelector('#display-cents');
+    let amout = page.querySelector('#amount');
     let btnNext = page.querySelector('#goto-select-method');
 
-    inputAmout._input.focus();
+    cursorPlaceholder.focus();
 
-    inputAmout.onkeyup = function(event) {
-      btnNext.disabled = (this.value ? false : true);
+    cursorPlaceholder.oninput = function(event) {
+      console.log(event);
+      let el = event.target;
+      let currentAmount = amount.value;
+      let text = '0000'+currentAmount*10+(parseInt(el.innerText) || 0);
+      let cents = text.substring(text.length-2, text.length);
+      let value = parseInt(text.substring(0,text.length-2));
+      let numericValue = value + cents/100;
+      amount.value = numericValue;
+      displayAmount.innerText = value;
+      displayCents.innerText = cents;
+      el.innerText = ''
     }
 
     btnNext.onclick = function() {
-      appNavigator.pushPage('select-method.html', {data: {amount: inputAmout.value}});
+      appNavigator.pushPage('select-method.html', {data: {amount: amount.value }});
     };
 
 
