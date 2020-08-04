@@ -8,7 +8,7 @@
   <script src="./application.js"></script>
   <link rel="shortcut icon" href="favicon.png?1" />
   <link rel="apple-touch-icon" href="touch-icon-iphone.png">
-  <title>Calculadora do Mercado Pago</title>
+  <title>Calculadora</title>
 </head>
 <!--
 <a href="https://www.mercadopago.com/point/integrations?amount=700&description=teste">Cobrar 7</a>
@@ -20,18 +20,28 @@
   <template id="input-amount.html">
     <ons-page id="input-amount">
       <ons-toolbar>
-        <div class="center">Calculadora do Mercado Pago</div>
+        <div class="center">Insira o valor a receber</div>
       </ons-toolbar>
       <section>
         <div style="text-align: center; margin-top: 20px">
           <p>
-            <ons-input id="amount" placeholder="Valor a receber" modifier="underbar" type="number" min="1" step="0.01" required></ons-input>
+            <ons-input id="amount" placeholder="Valor a receber" modifier="underbar" type="number" inputmode="numeric" min="1" step="0.01" required></ons-input>
           </p>
 
-          <ons-button modifier="large" id="goto-select-method">Prosseguir</ons-button>
+          <ons-button modifier="large" id="goto-select-method" disabled>Prosseguir 2</ons-button>
         </div>
       </section>
     </ons-page>
+  </template>
+
+
+  <template id="select-method-item.html">
+    <ons-list-item tappable>
+      <label class="left">
+        <ons-radio name="method" value="" input-id=""></ons-radio>
+      </label>
+      <label class="center" for=""></label>
+    </ons-list-item>
   </template>
 
   <template id="select-method.html">
@@ -40,20 +50,34 @@
         <div class="left">
           <ons-back-button>Voltar</ons-back-button>
         </div>
-        <div class="center">Calculadora do Mercado Pago</div>
+        <div class="center">Escolha a forma de pagamento</div>
       </ons-toolbar>
+      <ons-list>
+      </ons-list>
       <section>
-        <div style="text-align: center; margin-top: 20px">
-          <p>
-            <ons-input id="amount" placeholder="Valor a receber" modifier="underbar" type="number" min="1" step="0.01" autofocus></ons-input>
-          </p>
-
-          <ons-button modifier="large">Prosseguir</ons-button>
-        </div>
+        <ons-button modifier="large" id="goto-result" disabled>Prosseguir</ons-button>
       </section>
     </ons-page>
   </template>
 
+  <template id="result.html">
+    <ons-page id="result">
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Voltar</ons-back-button>
+        </div>
+        <div class="center">Resultado</div>
+      </ons-toolbar>
+      <ons-list>
+        <ons-list-header>Valor a receber</ons-list-header>
+        <ons-list-item><span id="inputted-amount"></span></ons-list-item>
+        <ons-list-header>Método de pagamento</ons-list-header>
+        <ons-list-item><span id="selected-method"></span></ons-list-item>
+        <ons-list-header>Valor a cobrar</ons-list-header>
+        <ons-list-item><span id="charge-amount"></span></ons-list-item>
+      </ons-list>
+    </ons-page>
+  </template>
 
 </body>
 </html>
