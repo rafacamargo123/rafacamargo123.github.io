@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <link rel="stylesheet" href="./application.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="./application.js"></script>
+  <link rel="shortcut icon" href="favicon.png?1" />
+  <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+  <title>Calculadora</title>
+</head>
+<body>
+  <ons-navigator swipeable id="appNavigator"></ons-navigator>
+
+  <template id="input-amount.html">
+    <ons-page id="input-amount">
+      <ons-toolbar>
+        <div class="center">Insira o valor a receber</div>
+      </ons-toolbar>
+      <section>
+        <div style="text-align: center; margin-top: 20px">
+          <p onclick="document.querySelector('#cursor-placeholder').focus();">
+            <span id="currency-sign">R$</span>
+            <span id="display-amount">0</span>
+            <span id="display-cents">00</span>
+            <span id="cursor-placeholder" contenteditable="true" inputmode="numeric"></span>
+          </p>
+          <p id="amount-error"></p>
+          <input type="hidden" id="amount">
+          <ons-button modifier="large" id="goto-select-method" disabled>Continuar</ons-button>
+        </div>
+      </section>
+    </ons-page>
+  </template>
+
+
+  <template id="select-method-item.html">
+    <ons-list-item tappable>
+      <label class="left">
+        <ons-radio name="method" value="" input-id=""></ons-radio>
+      </label>
+      <label class="center" for=""></label>
+    </ons-list-item>
+  </template>
+
+  <template id="select-method.html">
+    <ons-page id="select-method">
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Voltar</ons-back-button>
+        </div>
+        <div class="center">Escolha a forma de pagamento</div>
+      </ons-toolbar>
+      <ons-list>
+      </ons-list>
+    </ons-page>
+  </template>
+
+  <template id="result.html">
+    <ons-page id="result">
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Voltar</ons-back-button>
+        </div>
+        <div class="center">Resultado</div>
+      </ons-toolbar>
+      <ons-list>
+        <ons-list-header>Valor a receber</ons-list-header>
+        <ons-list-item><div class="center" id="inputted-amount"></div></ons-list-item>
+        <ons-list-header>Método de pagamento</ons-list-header>
+        <ons-list-item><div class="center" id="selected-method"></div></ons-list-item>
+        <ons-list-header>Valor a cobrar</ons-list-header>
+        <ons-list-item><div class="center" id="charge-amount"></div></ons-list-item>
+      </ons-list>
+    </ons-page>
+  </template>
+
+</body>
+</html>
