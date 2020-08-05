@@ -2,6 +2,11 @@ ons-page > .page__content > section {
   padding:8px;
 }
 
+[contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
 #display-amount, #cursor-placeholder {
   display: inline-block;
   font-size: 60px;
@@ -11,4 +16,8 @@ ons-page > .page__content > section {
   font-size: 30px;
   vertical-align: top;
   line-height: 50px;
+}
+
+#amount-error {
+  color: red;
 }
