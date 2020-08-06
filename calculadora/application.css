@@ -21,3 +21,7 @@ ons-page > .page__content > section {
 #amount-error {
   color: red;
 }
+
+#share-to-mercadopago {
+  display: none;
+}

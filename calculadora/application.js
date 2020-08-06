@@ -95,6 +95,7 @@ document.addEventListener('init', function(event) {
 
 
   } else if (page.id === 'result') {
+    let shareBtn = page.querySelector('#share-to-mercadopago');
     let amount = page.data.amount;
     let amountTxt = 'R$ ' + page.data.amount.replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     let method = page.data.method;
@@ -105,6 +106,13 @@ document.addEventListener('init', function(event) {
     page.querySelector('#inputted-amount').innerText = amountTxt;
     page.querySelector('#selected-method').innerText = methods[method].label;
     page.querySelector('#charge-amount').innerText = totalTxt;
+
+    if (document.location.hash == '#button') {
+      shareBtn.style.display = 'block';
+      shareBtn.onclick = function(event) {
+        window.open('https://www.mercadopago.com/point/integrations?amount=700&description=teste');
+      }
+    }
   }
 })
 
