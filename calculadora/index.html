@@ -31,7 +31,7 @@
           <ons-button modifier="large" id="goto-select-method" disabled>Continuar</ons-button>
         </div>
       </section>
-      dev1
+      dev2
     </ons-page>
   </template>
 
@@ -73,10 +73,42 @@
         <ons-list-item><div class="center" id="selected-method"></div></ons-list-item>
         <ons-list-header>Valor a cobrar</ons-list-header>
         <ons-list-item><div class="center" id="charge-amount"></div></ons-list-item>
+        <div class="center" id="installments">
+          <ons-list-header>Quantidade de parcelas</ons-list-header>
+          <ons-list-item>
+            <ons-select id="select-installments" modifier="underbar" inputmode="numeric">
+              <option value="">Selecione o número de parcelas</option>
+              <option value="2">2 parcelas</option>
+              <option value="3">3 parcelas</option>
+              <option value="4">4 parcelas</option>
+              <option value="5">5 parcelas</option>
+              <option value="6">6 parcelas</option>
+              <option value="7">7 parcelas</option>
+              <option value="8">8 parcelas</option>
+              <option value="9">9 parcelas</option>
+              <option value="10">10 parcelas</option>
+              <option value="11">11 parcelas</option>
+              <option value="12">12 parcelas</option>
+            </ons-select>
+          </ons-list-item>
+        </div>
+        <div class="center" id="description">
+          <ons-list-header>Descrição</ons-list-header>
+          <ons-list-item>
+            <ons-input type="text" id="input-description" modifier="underbar" maxlength="20" placeholder="Coloque uma descrição"></ons-input>
+          </ons-list-item>
+        </div>
       </ons-list>
       <section>
         <a id="share-to-mercadopago" class="button button--large">Cobrar com point</a>
       </section>
+      <ons-popover direction="up" id="popover-required-field" cancelable>
+        <div style="padding: 10px; text-align: center;">
+          <p>
+            Você deve preencher este campo para cobrar com point
+          </p>
+        </div>
+      </ons-popover>
     </ons-page>
   </template>
 </body>

@@ -7,11 +7,14 @@
 
 var methods = {
   'debito': {
-    fee: 0.0199, label: 'Débito'
+    fee: 0.0199, card_type: 'debit_card',
+    label: 'Débito'
   }, 'credito-vista': {
-    fee: 0.0474, label: 'Crédito à vista'
+    fee: 0.0474, card_type: 'credit_card',
+    label: 'Crédito à vista'
   }, 'credito-parcelado': {
-    fee: 0.0531, label: 'Crédito parcelado (comprador)'
+    fee: 0.0531, card_type: 'credit_card',
+    label: 'Crédito parcelado (comprador)'
   }
 }
 
@@ -86,7 +89,7 @@ document.addEventListener('init', function(event) {
         radio.setAttribute('input-id', key);
         radio.setAttribute('value', key);
         radio.onclick = function(event) {
-          appNavigator.pushPage('result.html', {data: {amount: amount, method: event.target.value}});
+          appNavigator.pushPage('result.html', {data: {amount: amount, methodKey: event.target.value}});
         }
         label.setAttribute('for', key);
         label.innerText = methods[key].label;
@@ -96,22 +99,46 @@ document.addEventListener('init', function(event) {
 
   } else if (page.id === 'result') {
     let shareBtn = page.querySelector('#share-to-mercadopago');
+    let installmentsDiv = page.querySelector('#installments');
+    let descriptionDiv = page.querySelector('#description');
+    let selectInstallments = page.querySelector('#select-installments');
+    let inputDescription = page.querySelector('#input-description');
     let amount = page.data.amount;
     let amountTxt = 'R$ ' + page.data.amount.replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    let method = page.data.method;
+    let methodKey = page.data.methodKey;
+    let method = methods[methodKey];
 
-    let total = Math.ceil(amount/(1-methods[method].fee)*100)/100;
+    let total = Math.ceil(amount/(1-method.fee)*100)/100;
     let totalTxt = 'R$ ' + total.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
     page.querySelector('#inputted-amount').innerText = amountTxt;
-    page.querySelector('#selected-method').innerText = methods[method].label;
+    page.querySelector('#selected-method').innerText = method.label;
     page.querySelector('#charge-amount').innerText = totalTxt;
 
     if (document.location.hash == '#button') {
+      descriptionDiv.style.display = 'block';
+      installmentsDiv.style.display = (methodKey == 'credito-parcelado' ? 'block' : 'none');
       shareBtn.style.display = 'block';
       shareBtn.onclick = function(event) {
-        this.href = 'https://www.mercadopago.com/point/integrations?amount='+amount+'&description=teste';
+        let popover = page.querySelector('#popover-required-field');
+        if (methodKey == 'credito-parcelado' && selectInstallments.value == '') {
+          popover.show(selectInstallments);
+          return false;
+        }
+        if (inputDescription.value.trim().length == 0) {
+          popover.show(inputDescription);
+          return false;
+        }
+        this.href = 'https://www.mercadopago.com/point/integrations?' +
+                      'amount=' + amount +
+                      '&description=' + encodeURIComponent(inputDescription.value) +
+                      (methodKey == 'credito-parcelado' ? '&installments=' + selectInstallments.value : '' ) +
+                      '&card_type=' + method.card_type;
       }
+    } else {
+      descriptionDiv.style.display = 'none';
+      installmentsDiv.style.display = 'none';
+      shareBtn.style.display = 'none';
     }
   }
 })

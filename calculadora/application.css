@@ -12,6 +12,14 @@ ons-page > .page__content > section {
   font-size: 60px;
 }
 
+#cursor-placeholder {
+  width: 1px;
+}
+
+#cursor-placeholder:focus {
+  outline:none;
+}
+
 #display-cents, #currency-sign {
   font-size: 30px;
   vertical-align: top;
@@ -22,6 +30,6 @@ ons-page > .page__content > section {
   color: red;
 }
 
-#share-to-mercadopago {
-  display: none;
+#input-description, #select-installments {
+  width: 100%;
 }
