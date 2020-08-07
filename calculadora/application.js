@@ -132,7 +132,7 @@ document.addEventListener('init', function(event) {
         this.href = 'https://www.mercadopago.com/point/integrations?' +
                       'amount=' + amount +
                       '&description=' + encodeURIComponent(inputDescription.value) +
-                      (methodKey == 'credito-parcelado' ? '&installments=' + selectInstallments.value : '' ) +
+                      '&installments=' + (methodKey == 'credito-parcelado' ? selectInstallments.value : '1' ) +
                       '&card_type=' + method.card_type;
       }
     } else {
