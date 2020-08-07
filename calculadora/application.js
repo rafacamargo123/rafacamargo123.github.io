@@ -129,10 +129,16 @@ document.addEventListener('init', function(event) {
           popover.show(inputDescription);
           return false;
         }
+        let installments = 0;
+        if (methodKey == 'credito-parcelado') {
+          installments = selectInstallments.value;
+        } else if (methodKey == 'credito-vista') {
+          installments = 1;
+        }
         this.href = 'https://www.mercadopago.com/point/integrations?' +
                       'amount=' + amount +
                       '&description=' + encodeURIComponent(inputDescription.value) +
-                      '&installments=' + (methodKey == 'credito-parcelado' ? selectInstallments.value : '1' ) +
+                      ( installments ? '&installments=' + installments : '') +
                       '&card_type=' + method.card_type;
       }
     } else {
