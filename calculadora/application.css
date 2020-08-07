@@ -7,9 +7,25 @@ ons-page > .page__content > section {
     user-select: text;
 }
 
+.align-center {
+  text-align: center
+}
+
+.padding-10 {
+  padding: 10px;
+}
+
 #display-amount, #cursor-placeholder {
   display: inline-block;
   font-size: 60px;
+}
+
+#cursor-placeholder {
+  width: 1px;
+}
+
+#cursor-placeholder:focus {
+  outline:none;
 }
 
 #display-cents, #currency-sign {
@@ -20,4 +36,8 @@ ons-page > .page__content > section {
 
 #amount-error {
   color: red;
+}
+
+#input-description, #select-installments {
+  width: 100%;
 }
