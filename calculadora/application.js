@@ -1,8 +1,8 @@
-if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./service-worker.js')
-    .then(() => console.log("Service Worker Registered"))
-    .catch(e => console.log(e));
-}
+// if('serviceWorker' in navigator) {
+//   navigator.serviceWorker.register('./service-worker.js')
+//     .then(() => console.log("Service Worker Registered"))
+//     .catch(e => console.log(e));
+// }
 
 
 var methods = {
@@ -110,7 +110,7 @@ document.addEventListener('init', function(event) {
     if (document.location.hash == '#button') {
       shareBtn.style.display = 'block';
       shareBtn.onclick = function(event) {
-        window.open('https://www.mercadopago.com/point/integrations?amount=700&description=teste');
+        this.href = 'https://www.mercadopago.com/point/integrations?amount='+amount+'&description=teste';
       }
     }
   }
