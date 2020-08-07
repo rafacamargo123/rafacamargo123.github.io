@@ -15,6 +15,11 @@ ons-page > .page__content > section {
   padding: 10px;
 }
 
+.popover.popover--small .popover__content {
+    width: auto;
+    min-height: auto;
+}
+
 #display-amount, #cursor-placeholder {
   display: inline-block;
   font-size: 60px;

@@ -17,6 +17,9 @@
     <ons-page id="input-amount">
       <ons-toolbar>
         <div class="center">Insira o valor a receber</div>
+        <div class="right">
+          <ons-toolbar-button id="about"><ons-icon icon="md-info"></ons-icon></ons-toolbar-button>
+        </div>
       </ons-toolbar>
       <section>
         <div class="align-center">
@@ -31,6 +34,9 @@
           <ons-button modifier="large" id="goto-select-method" disabled>Continuar</ons-button>
         </div>
       </section>
+      <ons-popover modifier="small" id="popover-version" modifier="small" cancelable>
+        <div class="align-center padding-10">v4.0</div>
+      </ons-popover>
     </ons-page>
   </template>
 

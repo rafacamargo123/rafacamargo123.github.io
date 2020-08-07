@@ -32,8 +32,12 @@ document.addEventListener('init', function(event) {
     let btnNext = page.querySelector('#goto-select-method');
     let amountError = page.querySelector('#amount-error');
     let inputContainer = page.querySelector('#input-amount-container');
+    let popover = page.querySelector('#popover-version');
+    let aboutBtn = page.querySelector('#about')
 
     window.setTimeout(() => cursorPlaceholder.focus(), 100);
+
+    aboutBtn.onclick = (e) => popover.show(e.target);
 
     inputContainer.onclick = function() {
       cursorPlaceholder.focus();
