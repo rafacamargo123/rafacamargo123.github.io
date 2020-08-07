@@ -30,9 +30,14 @@ document.addEventListener('init', function(event) {
     let displayCents = page.querySelector('#display-cents');
     let amount = page.querySelector('#amount');
     let btnNext = page.querySelector('#goto-select-method');
-    let amountError = page.querySelector('#amount-error')
+    let amountError = page.querySelector('#amount-error');
+    let inputContainer = page.querySelector('#input-amount-container');
 
     window.setTimeout(() => cursorPlaceholder.focus(), 100);
+
+    inputContainer.onclick = function() {
+      cursorPlaceholder.focus();
+    }
 
     function setAmountDisplay(text) {
       let value = parseInt(text.substring(0,text.length-2) || '0').toString().padStart(1, '0');
@@ -136,7 +141,7 @@ document.addEventListener('init', function(event) {
           installments = 1;
         }
         this.href = 'https://www.mercadopago.com/point/integrations?' +
-                      'amount=' + amount +
+                      'amount=' + total +
                       '&description=' + encodeURIComponent(inputDescription.value) +
                       ( installments ? '&installments=' + installments : '') +
                       '&card_type=' + method.card_type;

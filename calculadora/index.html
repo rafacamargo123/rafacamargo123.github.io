@@ -19,8 +19,8 @@
         <div class="center">Insira o valor a receber</div>
       </ons-toolbar>
       <section>
-        <div style="text-align: center; margin-top: 20px">
-          <p onclick="document.querySelector('#cursor-placeholder').focus();">
+        <div class="align-center">
+          <p id="input-amount-container">
             <span id="currency-sign">R$</span>
             <span id="display-amount">0</span>
             <span id="display-cents">00</span>
@@ -31,7 +31,6 @@
           <ons-button modifier="large" id="goto-select-method" disabled>Continuar</ons-button>
         </div>
       </section>
-      dev5
     </ons-page>
   </template>
 
@@ -103,7 +102,7 @@
         <a id="share-to-mercadopago" class="button button--large">Cobrar com point</a>
       </section>
       <ons-popover direction="up" id="popover-required-field" cancelable>
-        <div style="padding: 10px; text-align: center;">
+        <div class="align-center padding-10">
           <p>
             Você deve preencher este campo para cobrar com point
           </p>
