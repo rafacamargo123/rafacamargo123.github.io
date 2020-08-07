@@ -130,10 +130,6 @@ document.addEventListener('init', function(event) {
           popover.show(selectInstallments);
           return false;
         }
-        if (inputDescription.value.trim().length == 0) {
-          popover.show(inputDescription);
-          return false;
-        }
         let installments = 0;
         if (methodKey == 'credito-parcelado') {
           installments = selectInstallments.value;
@@ -142,7 +138,7 @@ document.addEventListener('init', function(event) {
         }
         this.href = 'https://www.mercadopago.com/point/integrations?' +
                       'amount=' + total +
-                      '&description=' + encodeURIComponent(inputDescription.value) +
+                      '&description=' + encodeURIComponent(inputDescription.value.trim()) +
                       ( installments ? '&installments=' + installments : '') +
                       '&card_type=' + method.card_type;
       }
