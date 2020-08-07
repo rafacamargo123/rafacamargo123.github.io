@@ -120,7 +120,7 @@ document.addEventListener('init', function(event) {
     page.querySelector('#selected-method').innerText = method.label;
     page.querySelector('#charge-amount').innerText = totalTxt;
 
-    if (document.location.hash == '#button') {
+    if (document.location.hash == '#point') {
       descriptionDiv.style.display = 'block';
       installmentsDiv.style.display = (methodKey == 'credito-parcelado' ? 'block' : 'none');
       shareBtn.style.display = 'block';
