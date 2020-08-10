@@ -5,18 +5,41 @@ if('serviceWorker' in navigator) {
 }
 
 
-var methods = {
-  'debito': {
-    fee: 0.0199, card_type: 'debit_card',
-    label: 'Débito'
-  }, 'credito-vista': {
-    fee: 0.0474, card_type: 'credit_card',
-    label: 'Crédito à vista'
-  }, 'credito-parcelado': {
-    fee: 0.0531, card_type: 'credit_card',
-    label: 'Crédito parcelado (comprador)'
+var providers = {
+  'MP': {
+    'debito': {
+      fee: 0.0199, card_type: 'debit_card',
+      label: 'Débito'
+    }, 'credito-vista': {
+      fee: 0.0474, card_type: 'credit_card',
+      label: 'Crédito à vista'
+    }, 'credito-parcelado': {
+      fee: 0.0531, card_type: 'credit_card',
+      label: 'Crédito parcelado (comprador)'
+    }
+  },
+  'PS': {
+    'debito': {
+      fee: 0.0239, card_type: 'debit_card',
+      label: 'Débito'
+    }, 'credito-vista': {
+      fee: 0.0499, card_type: 'credit_card',
+      label: 'Crédito à vista'
+    }, 'credito-parcelado': {
+      fee: 0.0559, card_type: 'credit_card',
+      label: 'Crédito parcelado (comprador)'
+    }
   }
 }
+var methods;
+var provider;
+if (document.location.hash == '#pagseguro') {
+  provider = 'PS'
+} else {
+  provider = 'MP';
+}
+methods = providers[provider];
+
 
 ons.ready(function() {
   appNavigator.pushPage('input-amount.html');
@@ -94,6 +117,8 @@ document.addEventListener('init', function(event) {
       ons.createElement('select-method-item.html', {append: list}).then(item => {
         let radio = item.querySelector('ons-radio');
         let label = item.querySelector('label.center');
+        let labelicon = item.querySelector('.label-icon');
+        let labeltext = item.querySelector('.label-text');
 
         radio.setAttribute('input-id', key);
         radio.setAttribute('value', key);
@@ -101,7 +126,8 @@ document.addEventListener('init', function(event) {
           appNavigator.pushPage('result.html', {data: {amount: amount, methodKey: event.target.value}});
         }
         label.setAttribute('for', key);
-        label.innerText = methods[key].label;
+        labelicon.classList.add(provider);
+        labeltext.innerText = methods[key].label;
       })
     });
 

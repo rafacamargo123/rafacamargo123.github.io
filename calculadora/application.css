@@ -46,3 +46,16 @@ ons-page > .page__content > section {
 #input-description, #select-installments {
   width: 100%;
 }
+
+.label-icon {
+    width: 20px;
+    height: 20px;
+    margin: 2px 4px 2px 0px;
+    background-image: url(./providers-icons.png);
+}
+.label-icon.MP {
+  background-position-x: 0px;
+}
+.label-icon.PS {
+  background-position-x: 20px;
+}
